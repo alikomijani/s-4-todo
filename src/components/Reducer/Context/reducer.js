@@ -1,5 +1,4 @@
-import { makeRandomID } from "./data";
-
+import { makeRandomID } from "../TodoList/data";
 
 function reducer(state, action) {
   const { type, payload } = action;
@@ -41,16 +40,23 @@ function reducer(state, action) {
             }
           : todo
       );
+    case "deleteTodoItem":
+      return state.map((todo) =>
+        todo.id === payload.todoId
+          ? { ...todo, items: todo.items.filter(item=> item.id !== payload.itemId) }
+          : todo
+      );
     default:
       return state;
   }
 }
 
 export const types = {
-    addToDoListItem: "addToDoListItem",
-    deleteTodoListItem: "deleteTodoListItem",
-    addToDoItems: "addToDoItems",
-    updateTodoItemStatus: "updateTodoItemStatus",
-  };
-  
+  addToDoListItem: "addToDoListItem",
+  deleteTodoListItem: "deleteTodoListItem",
+  addToDoItems: "addToDoItems",
+  updateTodoItemStatus: "updateTodoItemStatus",
+  deleteTodoItem: "deleteTodoItem",
+};
+
 export default reducer;
