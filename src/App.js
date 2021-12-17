@@ -1,9 +1,10 @@
 import "./App.css";
-import TodoList from "./components/Reducer/TodoList/TodoList";
+// import TodoList from "./components/Reducer/TodoList/TodoList";
+import TodoListContainer from "./components/State/TodoListContainer/TodoListContainer";
 function App() {
   return (
     <div className="App">
-      <TodoList />
+      <TodoListContainer />
     </div>
   );
 }
