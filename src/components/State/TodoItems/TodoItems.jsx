@@ -19,10 +19,25 @@ const TodoItems = ({ todo }) => {
             )
         );
     };
+    const handleDeleteTodoItem = (todoID, itemId) => {
+        setTodoList(
+            todoList.map((todo) =>
+                todo.id === todoID
+                    ? {
+                        ...todo,
+                        items: todo.items.filter((item) => item.id !== itemId),
+                    }
+                    : todo
+            )
+        );
+    };
     return (
         <ul>
             {todo.items.map((item) => (
-                <li key={`${todo.id}-${item.id}`}>
+                <li style={{
+                    display: 'flex',
+                    justifyContent: 'space-between'
+                }} key={`${todo.id}-${item.id}`}>
                     <CheckBox
                         onChange={(e) =>
                             handleUpdateTodoItemStatus(todo.id, item.id, e)
@@ -31,7 +46,7 @@ const TodoItems = ({ todo }) => {
                         id={`${todo.id}-${item.id}`}
                         label={item.title}
                     />
-
+                    <button onClick={()=>handleDeleteTodoItem(todo.id, item.id,)}>delete</button>
                 </li>
             ))}
         </ul>
